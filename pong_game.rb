@@ -6,13 +6,13 @@ require_relative 'paddle.rb'
 require_relative 'score.rb'
 class PongGame < Gosu::Window
 
-	def initialize 
+	def initialize
 		super 1140, 641, true
 		self.caption = 'Raven\'s Game of Pong'
 
 		@bgm = Gosu::Song.new self, 'bg_music.mp3'
 		@bgm.play true
-		
+
 		@background_colour = Gosu::Color.new 0xff1a1a1a
 		@object_colour = Gosu::Color.new 0xffefefef
 		@font = Gosu::Font.new(self, Gosu::default_font_name, 50)
@@ -21,7 +21,7 @@ class PongGame < Gosu::Window
 
 		@ball = PingPongBall.new self
 		@paddle_1 = Paddle.new self
-		@paddle_2 = Paddle.new self 
+		@paddle_2 = Paddle.new self
 		@score = Score.new
 
 		@dividing_line = 1140 / 2
@@ -32,7 +32,7 @@ class PongGame < Gosu::Window
 
 		@paddle_2_x = 1035
 	end
- 
+
 	def update
 		if @score.player_1 == 6
 			@game_over = true
@@ -51,7 +51,7 @@ class PongGame < Gosu::Window
 		else
 			@ball.change_direction
 			@ball.keep_moving
-	
+
 			if @ball.pos_x < -30
 				@score.add_point 'player_2'
 				@ball.pos_x = 1140 / 2
@@ -63,23 +63,23 @@ class PongGame < Gosu::Window
 				@ball.pos_y = (641 / 2).round
 				@ball.random_direction
 			end
-	
+
 			if button_down? Gosu::KbW or button_down? Gosu::KbK
 				@paddle_1.move_up
 			elsif button_down? Gosu::KbS or button_down? Gosu::KbJ
 				@paddle_1.move_down
 			end
-	
+
 			if button_down? Gosu::KbUp
 				@paddle_2.move_up
 			elsif button_down? Gosu::KbDown
 				@paddle_2.move_down
 			end
-	
+
 			if button_down? Gosu::KbEscape
 				close
 			end
-			
+
 			if @ball.pos_x > @paddle_2_x
 				nil
 			elsif @ball.pos_x + 15 > @paddle_2_x
@@ -88,7 +88,7 @@ class PongGame < Gosu::Window
 					@ball.force_direction new_direction
 				end
 			end
-			
+
 			if @ball.pos_x < @paddle_1_x
 				nil
 			elsif @ball.pos_x - 15 < @paddle_1_x
@@ -128,7 +128,7 @@ class PongGame < Gosu::Window
 
 		#  What direction are we going? (Diagnositcs)
 		#@diagnostic.draw("#{@ball.direction}", 100, 600, 5, 3)
-		
+
 		#  Where should the ping pong ball be starting
 		#@diagnostic.draw("#{@ball.pos_y}", 100, 600, 5, 3)
 
@@ -145,7 +145,7 @@ class PongGame < Gosu::Window
 					  0, 641, @background_colour,
 					  1140, 641, @background_colour)
 			@winning_screen.draw(285, 100, 1000)
-			
+
 			@end_font.draw("Press ESC to quit", 450, 250, 1000)
 		end
 	end
@@ -160,7 +160,7 @@ class PongGame < Gosu::Window
 
 		@winner_found = true
 
-		@winning_screen = Gosu::Image.from_text(self, "#{@winning_text}", 'Source Code Pro', 100) 
+		@winning_screen = Gosu::Image.from_text(self, "#{@winning_text}", 'Source Code Pro', 100)
 	end
 end
 

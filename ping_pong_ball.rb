@@ -52,7 +52,7 @@ class PingPongBall
 	end
 
 	#  Move the ball with given velocity and angle/direction
-	#  
+	#
 	#  IMPLEMENT:  Add a check to ensure that the ball can continue moving
 	#  in the given direction... use change_direction method...
 	def keep_moving direction = @direction
@@ -100,7 +100,7 @@ class PingPongBall
 		end
 	end
 
-	def random_direction 
+	def random_direction
 		@direction = possible_directions.sample
 	end
 

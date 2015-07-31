@@ -9,8 +9,14 @@ class Paddle
 	attr_accessor :spawn_x, :spawn_y, :current_y
 	attr_reader :section_height, :paddle_height, :paddle_width
 
+	# Define the paddles' width, height, and keep a record of it's current_y position
+	#
+	# @paddle_colour is used by Gosu to color our paddle
+	#
+	# We don't have an image for the paddle, so instead we will use a
+	# pipe character, as denoted by the @image variable. This is also used
+	# by the Gosu gaming library
 	def initialize window
-		@section_height = 32
 		@paddle_width = 20
 		@paddle_height = (641 / 4).round
 		@current_y = 200
@@ -20,6 +26,8 @@ class Paddle
 		@image = Gosu::Image.from_text(window, '|', 'Source Code Pro', 160)
 	end
 
+	# Conditionally draw the left or right paddle based on which player
+	# is passed into the method
 	def draw player
 		if player == 'player_1'
 			@image.draw((1140 * 0.02).round, @current_y, 500)

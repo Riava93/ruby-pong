@@ -46,11 +46,11 @@ describe 'PongGame' do
 			it 'Should have a height equal to 1 / 5 of the paddle height' do
 				expect(subject.section_height).to eq 32
 			end
-			
+
 		end
 
 		context 'Movement controls' do
-			
+
 			it 'Should be able to move up' do
 				subject.current_y = 50
 				subject.move_up
@@ -76,7 +76,7 @@ describe 'PongGame' do
 	end  # End paddle context
 
 	context 'Ping Pong Ball: ' do
-		
+
 		subject { PingPongBall.new }
 
 		it 'Should respond to correct values' do
@@ -101,7 +101,7 @@ describe 'PongGame' do
 		end
 
 		context 'Change directions: ' do
-			
+
 			subject { PingPongBall.new }
 
 			context 'When hitting the top boundry' do
@@ -110,7 +110,7 @@ describe 'PongGame' do
 					# Force ball to be close to top boundry
 					subject.pos_y = 3
 					subject.direction = 'north_west'
-	
+
 					subject.change_direction
 					expect(subject.direction).to eq 'south_west'
 				end
@@ -164,7 +164,7 @@ describe 'PongGame' do
 					# Force ball to be close to top boundry
 					subject.pos_y = 638
 					subject.direction = 'south_west'
-	
+
 					subject.change_direction
 					expect(subject.direction).to eq 'north_west'
 				end
@@ -200,7 +200,7 @@ describe 'PongGame' do
 					subject.change_direction
 					expect(subject.direction).to eq 'west_west_north'
 				end
-				
+
 				it 'Should move east east north when moving east east south' do
 					subject.pos_y = 638
 					subject.direction = 'east_east_south'
@@ -299,7 +299,7 @@ describe 'PongGame' do
 				expect(subject.pos_x).to eq 570
 				expect(subject.pos_y).to eq 320
 
-				subject.direction = 'east_east_north' 
+				subject.direction = 'east_east_north'
 				subject.keep_moving
 				expect(subject.pos_x).to eq 574
 				expect(subject.pos_y).to eq 318
@@ -358,7 +358,7 @@ describe 'PongGame' do
 	end  # End ping pong ball context
 
 	context 'Score Keeper: ' do
-		
+
 		subject { Score.new }
 
 		it 'should respond to proper values' do
@@ -381,18 +381,4 @@ describe 'PongGame' do
 			expect(subject.player_2).to eq 1
 		end
 	end  # End of score context
-
-
-#	context 'Pong Table class: ' do
-#
-#		
-#
-#		it 'Should initialize with proper values' do
-#			expect(subject.respond_to? :ball).to eq true
-#			expect(subject.respond_to? :paddle_1).to eq true
-#			expect(subject.respond_to? :paddle_2).to eq true
-#			expect(subject.respond_to? :table).to eq true
-#		end
-#
-#	end  # End of Pong game class context
 end
